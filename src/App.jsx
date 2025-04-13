@@ -15,9 +15,7 @@ function App() {
     });
 
     const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
-    const positiveFeedback = Math.round(
-        ((feedbacks.good + feedbacks.neutral) / totalFeedback) * 100
-    );
+    const positiveFeedback = Math.round((feedbacks.good / totalFeedback) * 100);
 
     const updateFeedback = feedbackType => {
         if (feedbackType !== 'reset') {
@@ -36,7 +34,7 @@ function App() {
 
     useEffect(() => {
         window.localStorage.setItem('saved-feedback', JSON.stringify(feedbacks));
-    });
+    }, [feedbacks]);
 
     return (
         <>
